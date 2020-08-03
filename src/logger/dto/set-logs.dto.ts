@@ -1,10 +1,13 @@
-import { IsArray, IsString } from 'class-validator';
-import { LoggingEvent } from '../interfaces/logging-event.interface';
+import { IsString, ValidateNested } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { LoggingEventDto } from './logging-event.dto';
 
 export class SetLogsDto {
   @IsString()
+  @ApiProperty({ example: '1' })
   readonly serverId: string;
 
-  @IsArray()
-  readonly logs: LoggingEvent[];
+  @ValidateNested()
+  @ApiProperty({ type: LoggingEventDto, isArray: true })
+  readonly logs: LoggingEventDto[];
 }
