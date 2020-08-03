@@ -1,6 +1,17 @@
 language: node
 node_js:
-  - 12
   - 14
 cache:
   npm: true
+
+jobs:
+  include:
+    - stage: lint
+      node_js: node
+      script: npm run lint
+    - stage: test
+      node_js: node
+      script: npm test
+    - stage: coveralls
+      node_js: node
+      script: npm run coveralls

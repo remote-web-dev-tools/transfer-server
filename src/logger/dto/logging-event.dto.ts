@@ -6,4 +6,6 @@ export class LoggingEventDto implements LoggingEvent {
   @IsString()
   @ApiProperty({ example: 'page' })
   readonly category: string;
+
+  [key: string]: any;
 }
