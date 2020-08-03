@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ServerId } from '../interfaces/server-id.interface';
 import { LoggingEvent } from '../interfaces/logging-event.interface';
+import { Interval } from '@nestjs/schedule';
 
 interface LoggerItem {
   logs: LoggingEvent[];
@@ -82,7 +83,9 @@ export class LoggerService {
 
   /**
    * remove expired logs
+   * every 10 minute remove expired logs
    */
+  @Interval(10 * 60 * 1000)
   removeExpiredLogs(): void {
     this.loggerDatabase.forEach((value, key, map) => {
       if (Date.now() - value.lastUpdateTime > value.expired) {
