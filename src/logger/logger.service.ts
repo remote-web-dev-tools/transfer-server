@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ServerId } from '../interfaces/server-id.interface';
-import { LoggingEvent } from '../interfaces/logging-event.interface';
+import { ServerId } from './interfaces/server-id.interface';
+import { LoggingEvent } from './interfaces/logging-event.interface';
 import { Interval } from '@nestjs/schedule';
+import { SetLogsDto } from './dto/set-logs.dto';
 
 interface LoggerItem {
   logs: LoggingEvent[];
@@ -65,10 +66,11 @@ export class LoggerService {
 
   /**
    * set logs
-   * @param serverId
-   * @param logs
+   * @param setLogDto
    */
-  setLogs(serverId: ServerId, logs: LoggingEvent[]): void {
+  setLogs(setLogDto: SetLogsDto): void {
+    const { serverId, logs } = setLogDto;
+
     let loggerItem = this.loggerDatabase.get(serverId);
 
     if (!loggerItem) {

@@ -22,20 +22,26 @@ describe('LoggerService', () => {
     });
 
     it('should distinct category name', () => {
-      service.setLogs('1', [
-        { category: 'category1' },
-        { category: 'category1' },
-        { category: 'category2' },
-      ]);
+      service.setLogs({
+        serverId: '1',
+        logs: [
+          { category: 'category1' },
+          { category: 'category1' },
+          { category: 'category2' },
+        ],
+      });
       expect(service.getCategories('1')).toEqual(['category1', 'category2']);
 
-      service.setLogs('2', []);
+      service.setLogs({
+        serverId: '2',
+        logs: [],
+      });
       expect(service.getCategories('2')).toEqual([]);
 
-      service.setLogs('3', [
-        { category: 'category1' },
-        { category: 'category2' },
-      ]);
+      service.setLogs({
+        serverId: '3',
+        logs: [{ category: 'category1' }, { category: 'category2' }],
+      });
 
       expect(service.getCategories('3')).toEqual(['category1', 'category2']);
     });
@@ -43,7 +49,10 @@ describe('LoggerService', () => {
 
   describe('setLogs', () => {
     it('should correctly set log with first ', () => {
-      service.setLogs('1', [{ category: 'category' }]);
+      service.setLogs({
+        serverId: '1',
+        logs: [{ category: 'category' }],
+      });
 
       expect(service.loggerDatabase.get('1').expired).toEqual(600);
       expect(service.loggerDatabase.get('1').logs).toEqual([
@@ -55,8 +64,14 @@ describe('LoggerService', () => {
     });
 
     it('should correctly set log', () => {
-      service.setLogs('1', [{ category: 'category', index: 1 }]);
-      service.setLogs('1', [{ category: 'category', index: 2 }]);
+      service.setLogs({
+        serverId: '1',
+        logs: [{ category: 'category', index: 1 }],
+      });
+      service.setLogs({
+        serverId: '1',
+        logs: [{ category: 'category', index: 2 }],
+      });
 
       expect(service.loggerDatabase.get('1').logs).toEqual([
         { category: 'category', index: 1 },
@@ -74,8 +89,14 @@ describe('LoggerService', () => {
     });
 
     it("should return serverId's logs", () => {
-      service.setLogs('1', [{ category: 'category', index: 1 }]);
-      service.setLogs('1', [{ category: 'category', index: 2 }]);
+      service.setLogs({
+        serverId: '1',
+        logs: [{ category: 'category', index: 1 }],
+      });
+      service.setLogs({
+        serverId: '1',
+        logs: [{ category: 'category', index: 2 }],
+      });
 
       expect(service.getLogs('1')).toEqual([
         { category: 'category', index: 1 },
@@ -84,8 +105,14 @@ describe('LoggerService', () => {
     });
 
     it('should clear logs after get logs', () => {
-      service.setLogs('1', [{ category: 'category', index: 1 }]);
-      service.setLogs('1', [{ category: 'category', index: 2 }]);
+      service.setLogs({
+        serverId: '1',
+        logs: [{ category: 'category', index: 1 }],
+      });
+      service.setLogs({
+        serverId: '1',
+        logs: [{ category: 'category', index: 2 }],
+      });
 
       service.getLogs('1');
 
@@ -109,8 +136,14 @@ describe('LoggerService', () => {
 
   it('should remove expired logs', done => {
     service.setExpired(100);
-    service.setLogs('1', [{ category: 'category', index: 1 }]);
-    service.setLogs('1', [{ category: 'category', index: 2 }]);
+    service.setLogs({
+      serverId: '1',
+      logs: [{ category: 'category', index: 1 }],
+    });
+    service.setLogs({
+      serverId: '1',
+      logs: [{ category: 'category', index: 2 }],
+    });
 
     setTimeout(() => {
       service.removeExpiredLogs();
