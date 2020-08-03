@@ -8,11 +8,11 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle('Logger Transfer API')
-    .setDescription('The Logger Transfer API description')
     .setVersion('1.0')
+    .addTag('logger')
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api-doc', app, document);
 
   app.useGlobalPipes(new ValidationPipe());
 
