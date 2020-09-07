@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Ip, Post } from '@nestjs/common';
 import { LoggerService } from './logger.service';
 import { LoggingEvent } from './interfaces/logging-event.interface';
 import { Response, ResponseService } from '../common/services/response.service';
@@ -13,17 +13,17 @@ export class LoggerController {
   @Inject()
   responseService: ResponseService;
 
-  @Get('/categories/:serverId')
+  @Get('/categories')
   @ApiOperation({ summary: "Get serverId's log categories", tags: ['logger'] })
-  getCategories(@Param('serverId') serverId: string): Response<string[]> {
+  getCategories(@Ip() serverId: string): Response<string[]> {
     const categories = this.loggerService.getCategories(serverId);
 
     return this.responseService.createSuccessResponse(categories);
   }
 
-  @Get('/logs/:serverId')
+  @Get('/logs')
   @ApiOperation({ summary: "Get serverId's logs", tags: ['logger'] })
-  getLogs(@Param('serverId') serverId: string): Response<LoggingEvent[]> {
+  getLogs(@Ip() serverId: string): Response<LoggingEvent[]> {
     const logs = this.loggerService.getLogs(serverId);
     return this.responseService.createSuccessResponse(logs);
   }
