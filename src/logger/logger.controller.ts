@@ -15,17 +15,20 @@ export class LoggerController {
 
   @Get('/categories')
   @ApiOperation({ summary: "Get serverId's log categories", tags: ['logger'] })
-  getCategories(@Ip() serverId: string): Response<string[]> {
-    const categories = this.loggerService.getCategories(serverId);
+  getCategories(@Ip() ip: string): Response<string[]> {
+    const serverId = this.getIpV4(ip);
 
-    return this.responseService.createSuccessResponse(categories);
+    const categories = this.loggerService.getCategories(serverId);
+    return this.responseService.createSuccessResponse(serverId, categories);
   }
 
   @Get('/logs')
   @ApiOperation({ summary: "Get serverId's logs", tags: ['logger'] })
-  getLogs(@Ip() serverId: string): Response<LoggingEvent[]> {
+  getLogs(@Ip() ip: string): Response<LoggingEvent[]> {
+    const serverId = this.getIpV4(ip);
+
     const logs = this.loggerService.getLogs(serverId);
-    return this.responseService.createSuccessResponse(logs);
+    return this.responseService.createSuccessResponse(serverId, logs);
   }
 
   @Post('/upload')
@@ -34,5 +37,11 @@ export class LoggerController {
     this.loggerService.setLogs(setLogsDto);
 
     return this.responseService.createSuccessResponse();
+  }
+
+  private getIpV4(ip: string) {
+    const result = ip.split(':');
+
+    return result[result.length - 1];
   }
 }
