@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TransferService } from './transfer.service';
 
-function sleep(ms: number) {
+function sleep(ms: number): Promise<void> {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve();
