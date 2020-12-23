@@ -12,7 +12,7 @@ type Transfer = Map<ServerId, Map<ClientId, TransferItem>>;
 
 @Injectable()
 export class TransferService {
-  _transferData: Transfer = new Map();
+  private _transferData: Transfer = new Map();
 
   get transferData(): Transfer {
     return this._transferData;
