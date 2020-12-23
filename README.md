@@ -1,10 +1,10 @@
-# Logger transfer server
+# Transfer server
 
 [![Build Status](https://travis-ci.com/lleohao/logger-transfer-server.svg?branch=master)](https://travis-ci.com/lleohao/logger-transfer-server) [![Coverage Status](https://coveralls.io/repos/github/lleohao/logger-transfer-server/badge.svg?branch=master)](https://coveralls.io/github/lleohao/logger-transfer-server?branch=master)
 
 > Power by [Nest](https://github.com/nestjs/nest)
 
-Transfer log4js log
+Transfer data server
 
 ## Usage
 
