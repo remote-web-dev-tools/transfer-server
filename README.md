@@ -1,6 +1,6 @@
 # Transfer server
 
-[![Build Status](https://travis-ci.com/lleohao/logger-transfer-server.svg?branch=master)](https://travis-ci.com/lleohao/logger-transfer-server) [![Coverage Status](https://coveralls.io/repos/github/lleohao/logger-transfer-server/badge.svg?branch=master)](https://coveralls.io/github/lleohao/logger-transfer-server?branch=master)
+[![Build Status](https://travis-ci.com/remote-web-dev-tools/logger-server.svg?branch=master)](https://travis-ci.com/remote-web-dev-tools/logger-server) [![Coverage Status](https://coveralls.io/repos/github/lleohao/logger-transfer-server/badge.svg?branch=master)](https://coveralls.io/github/lleohao/logger-transfer-server?branch=master)
 
 > Power by [Nest](https://github.com/nestjs/nest)
 

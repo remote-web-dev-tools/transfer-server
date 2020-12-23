@@ -7,9 +7,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const options = new DocumentBuilder()
-    .setTitle('Logger Transfer API')
+    .setTitle('Transfer API')
     .setVersion('1.0')
-    .addTag('logger')
+    .addTag('Transfer')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-doc', app, document);

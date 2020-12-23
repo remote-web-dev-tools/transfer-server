@@ -3,7 +3,9 @@ import { TransferService } from './transfer.service';
 import { ResponseService, Response } from '../common/services/response.service';
 import { TransferDto } from './dto/transfer.dto';
 import { ClientId } from './interfaces/transfer-id.interface';
+import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Transfer')
 @Controller('/api/transfer')
 export class TransferController {
   constructor(
@@ -11,15 +13,36 @@ export class TransferController {
     private responseService: ResponseService,
   ) {}
 
+  @ApiParam({
+    name: 'serverId',
+    required: true,
+    description: 'Server ID',
+  })
+  @ApiOperation({
+    summary: "Get serverId's clientIds",
+  })
   @Get('/client-ids/:serverId')
-  GetCategories(@Param() serverId: string): Response<ClientId[]> {
+  getClientIds(@Param() serverId: string): Response<ClientId[]> {
     return this.responseService.createSuccessResponse(
       this.transferService.getClientIds(serverId),
     );
   }
 
+  @ApiParam({
+    name: 'serverId',
+    required: true,
+    description: 'Server ID',
+  })
+  @ApiParam({
+    name: 'clientId',
+    required: true,
+    description: 'Client ID',
+  })
+  @ApiOperation({
+    summary: "Get the serverId and clientId' transfer data",
+  })
   @Get('/data/:serverId/:clientId')
-  GetData(
+  getTransferData(
     @Param() serverId: string,
     @Param() clientId: string,
   ): Response<any[]> {
@@ -28,8 +51,11 @@ export class TransferController {
     );
   }
 
+  @ApiOperation({
+    summary: 'Upload transfer data',
+  })
   @Post('/upload')
-  setLogs(@Body() body: TransferDto): Response<void> {
+  uploadTransferData(@Body() body: TransferDto): Response<void> {
     const { clientId, data, serverId } = body;
 
     this.transferService.appendTransferData(serverId, clientId, data);

@@ -1,4 +1,4 @@
-import { ServerId, ClientId } from './transfer-id.interface';
+import { ClientId, ServerId } from './transfer-id.interface';
 
 export interface TransferData {
   serverId: ServerId;
