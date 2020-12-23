@@ -1,18 +1,21 @@
 import { Module } from '@nestjs/common';
-import { ServeStaticModule } from '@nestjs/serve-static';
+// import { ServeStaticModule } from '@nestjs/serve-static';
+// import { join } from 'path';
+
 import { AppService } from './app.service';
-import { LoggerModule } from './logger/logger.module';
-import { join } from 'path';
+import { TransferModule } from './transfer/transfer.module';
 
 @Module({
   imports: [
-    LoggerModule,
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../www'),
-      exclude: ['/api*'],
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '../www'),
+    //   exclude: ['/api*'],
+    // }),
+    TransferModule,
   ],
 
   providers: [AppService],
+
+  controllers: [],
 })
 export class AppModule {}
