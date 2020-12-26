@@ -23,10 +23,13 @@ export class TransferController {
     summary: "Get serverId's clientIds",
   })
   @Get('/client-ids/:serverId')
-  getClientIds(@Param() serverId: string): Response<ClientId[]> {
-    return this.responseService.createSuccessResponse(
-      this.transferService.getClientIds(serverId),
-    );
+  getClientIds(
+    @Param() serverId: string,
+  ): Response<{ serverId: string; data: ClientId[] }> {
+    return this.responseService.createSuccessResponse({
+      serverId,
+      data: this.transferService.getClientIds(serverId),
+    });
   }
 
   @ApiParam({
@@ -46,10 +49,12 @@ export class TransferController {
   getTransferData(
     @Param() serverId: string,
     @Param() clientId: string,
-  ): Response<any[]> {
-    return this.responseService.createSuccessResponse(
-      this.transferService.getTransferData(serverId, clientId),
-    );
+  ): Response<{ clientId: string; serverId: string; data: any[] }> {
+    return this.responseService.createSuccessResponse({
+      clientId,
+      serverId,
+      data: this.transferService.getTransferData(serverId, clientId),
+    });
   }
 
   @ApiOperation({

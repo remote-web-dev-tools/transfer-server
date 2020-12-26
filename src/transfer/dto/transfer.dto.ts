@@ -11,5 +11,5 @@ export class TransferDto implements TransferData {
   serverId: ServerId;
 
   @ApiProperty({ required: false })
-  clientId: ClientId;
+  clientId?: ClientId;
 }
