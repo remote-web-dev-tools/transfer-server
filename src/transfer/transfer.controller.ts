@@ -4,7 +4,7 @@ import { ResponseService, Response } from '../common/services/response.service';
 import { TransferDto } from './dto/transfer.dto';
 import { ClientId } from './interfaces/transfer-id.interface';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import { IpAddress } from '../ip-address.decorator';
+import { Ip } from '@nestjs/common';
 
 @ApiTags('Transfer')
 @Controller('/api/transfer')
@@ -58,17 +58,12 @@ export class TransferController {
   @Post('/upload')
   uploadTransferData(
     @Body() body: TransferDto,
-    @IpAddress() ipAddress: string,
+    @Ip() ip: string,
   ): Response<void> {
-    const { clientId = ipAddress, data, serverId } = body;
+    const { clientId = ip, data, serverId } = body;
 
     this.transferService.appendTransferData(serverId, clientId, data);
 
     return this.responseService.createSuccessResponse();
-  }
-
-  @Get('/ip')
-  testIp(@IpAddress() ipAddress: string): string {
-    return ipAddress;
   }
 }
