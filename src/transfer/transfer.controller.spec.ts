@@ -6,6 +6,8 @@ import { ResponseService } from '../common/services/response.service';
 describe('Transfer Controller', () => {
   let controller: TransferController;
 
+  /* TODO: 添加测试用例 */
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [TransferController],
