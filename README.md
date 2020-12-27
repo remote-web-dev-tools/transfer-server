@@ -10,11 +10,11 @@ Transfer data server
 
 1. Download code
 
-    `git clone git@github.com:lleohao/logger-transfer-server.git --depth 1`
+    `git clone git@github.com:remote-web-dev-tools/transfer-server.git --depth 1`
 
 2. Install dependence
 
-   `cd logger-transfer-server && npm i`
+   `cd transfer-server && npm i`
    
 3. Start server
 
