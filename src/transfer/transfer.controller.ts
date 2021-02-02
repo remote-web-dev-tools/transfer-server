@@ -25,10 +25,10 @@ export class TransferController {
   @Get('/client-ids/:serverId')
   getClientIdsByServerId(
     @Param('serverId') serverId: string,
-  ): Response<{ serverId: string; data: ClientId[] }> {
+  ): Response<{ serverId: string; clientIds: ClientId[] }> {
     return this.responseService.createSuccessResponse({
       serverId,
-      data: this.transferService.getClientIds(serverId),
+      clientIds: this.transferService.getClientIds(serverId),
     });
   }
 
@@ -38,10 +38,10 @@ export class TransferController {
   @Get('/client-ids')
   getClientIds(
     @Ip() ip: string,
-  ): Response<{ serverId: string; data: ClientId[] }> {
+  ): Response<{ serverId: string; clientIds: ClientId[] }> {
     return this.responseService.createSuccessResponse({
       serverId: ip,
-      data: this.transferService.getClientIds(ip),
+      clientIds: this.transferService.getClientIds(ip),
     });
   }
 
