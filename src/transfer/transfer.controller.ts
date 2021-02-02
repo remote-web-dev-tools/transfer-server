@@ -60,8 +60,8 @@ export class TransferController {
   })
   @Get('/data/:serverId/:clientId')
   getTransferData(
-    @Param() serverId: string,
-    @Param() clientId: string,
+    @Param('serverId') serverId: string,
+    @Param('clientId') clientId: string,
   ): Response<{ clientId: string; serverId: string; data: any[] }> {
     return this.responseService.createSuccessResponse({
       clientId,
