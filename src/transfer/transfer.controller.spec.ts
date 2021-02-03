@@ -28,7 +28,7 @@ describe('Transfer Controller', () => {
         });
 
       expect(controller.getClientIds('s1').data).toEqual({
-        data,
+        clientIds: data,
         serverId: 's1',
       });
     });
