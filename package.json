@@ -22,7 +22,7 @@
     "coveralls": "jest --coverage && coveralls < coverage/lcov.info"
   },
   "dependencies": {
-    "@nestjs/common": "^7.6.4",
+    "@nestjs/common": "^10.4.16",
     "@nestjs/core": "^7.6.4",
     "@nestjs/platform-express": "^7.6.4",
     "@nestjs/schedule": "^0.4.1",
